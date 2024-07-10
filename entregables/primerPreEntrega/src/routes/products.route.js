@@ -4,6 +4,17 @@ const fs = require('fs')
 
 const filePath = 'products.json'
 
+const getProductById = (id) =>{
+    const products = readProductsFromFile()
+    const productsID = parseInt(id)
+    const product = products.find((res) => res.id === productsID)
+    if (!product) {
+        return null 
+    } else {
+        return product
+    }
+}
+
 const readProductsFromFile = () => {
     try {
         const data = fs.readFileSync(filePath, "utf-8")
@@ -17,17 +28,20 @@ const writeProductsFromFile = (products) => {
     fs.writeFileSync(filePath, JSON.stringify(products, null, 2))
 }
 
-
-
-
 router.get("/api/products", (req, res) => {
-    const products = readProductsFromFile()
-    res.json(products)
-})
+    const limit = parseInt(req.query.limit); 
+    const products = readProductsFromFile();
+
+    if (!isNaN(limit) && limit > 0) {
+        res.json(products.slice(0, limit));
+    } else {
+        res.json(products); 
+    }
+});
+
 router.get("/api/products/:id", (req, res) => {
-    const products = readProductsFromFile()
-    const productsID = parseInt(req.params.id)
-    const product = products.find((res) => res.id === productsID)
+    const productsID = req.params.id
+    const product = getProductById(productsID)
     if (product) {
         res.json(product)
     } else {
@@ -38,7 +52,10 @@ router.get("/api/products/:id", (req, res) => {
 router.post("/api/products", (req, res) => {
     const products = readProductsFromFile()
     const { title, description, code, price, status, stock, category } = req.body
-    const newProduct = { id: products.length + 1, title: title, description: description, code: code, price: price, status: status, stock: stock, category: category }
+    if (!title ||  !description || !code || !price || status === null || !stock || !category) {
+        res.status(422).json({message: "Todos los campos son requeridos"})
+    }
+    const newProduct = { id: products.length + 1, title: title, description: description, code: code, price: price, status: status ? status : true  , stock: stock, category: category }
     // const newProduct = req.body
     // const resultProduct = { id: products.length + 1, ...newProduct, status: true}
     products.push(newProduct)
@@ -47,12 +64,14 @@ router.post("/api/products", (req, res) => {
 })
 
 router.put("/api/products/:id", (req, res) => {
-    const products = readProductsFromFile()
-    const productsID = parseInt(req.params.id)
-    const product = products.find((res) => res.id === productsID)
+    const productsID = req.params.id
+    const product = getProductById(productsID)
     if (product) {
+    
+        res.status(404).json({ message: "Error, no se pudo actualizar el producto porque no existe" })
+    } else {
         const { title, description, code, price, stock, category } = req.body
-        product.title = title
+        product.title = title ? title : product.title
         product.description = description
         product.code = code
         product.price = price
@@ -60,23 +79,20 @@ router.put("/api/products/:id", (req, res) => {
         product.category = category
         writeProductsFromFile(products)
         res.json(product)
-    } else {
-        res.status(404).json({ message: "Error, no se pudo actualizar el producto" })
     }
 })
 
 router.delete("/api/products/:id", (req, res) => {
-    const products = readProductsFromFile()
-    const productsID = parseInt(req.params.id)
-    const productIndex = products.findIndex((res) => res.id === productsID)
-    if (productIndex !== -1) {
-        products.splice(productIndex, 1)
-        writeProductsFromFile(products)
-        res.json({ message: "Producto eliminado correctamente" })
-    } else {
-        res.status(404).json({ message: "Error, no se encontro ningun producto" })
+    const productsID = req.params.id
+    const product = getProductById(productsID)
+    if (!product) {
+        res.status(404).json({ message: "Error, no se pudo eliminar el producto porque no existe" })
+    } else{
+        const productsWithoutProductId = products.filter((product) => product.id !== productsID)
+         writeProductsFromFile(productsWithoutProductId)
+         res.status(200).json(productsWithoutProductId)
     }
-})
 
+})
 
 module.exports = router
