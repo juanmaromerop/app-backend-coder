@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Pan frances",
+    "description": "Pan frances saludable, perfecto para un desayuno nutritivo.",
+    "code": "PI506",
+    "price": 5,
+    "status": true,
+    "stock": 25,
+    "category": "Pan"
+  },
+  {
+    "id": 2,
+    "title": "Pan frances",
+    "description": "Pan frances saludable, perfecto para un desayuno nutritivo.",
+    "code": "PI506",
+    "price": 5,
+    "status": true,
+    "stock": 25,
+    "category": "Pan"
+  },
+  {
+    "id": 3,
+    "title": "Pan frances",
+    "description": "Pan frances saludable, perfecto para un desayuno nutritivo.",
+    "code": "PI506",
+    "price": 5,
+    "status": true,
+    "stock": 25,
+    "category": "Pan"
+  }
+]
