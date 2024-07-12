@@ -7,7 +7,7 @@ class ProductManager {
 
    readProductsFromFile = async  () => {
         try {
-            const data =  await fs.readFileSync(this.file, "utf-8");
+            const data =  await fs.readFile(this.file, "utf-8");
             return JSON.parse(data);
         } catch (error) {
             return []
@@ -15,7 +15,7 @@ class ProductManager {
     }
     
     writeProductsFromFile = async (products) => {
-        await fs.writeFileSync(this.file, JSON.stringify(products, null, 2));
+        await fs.writeFile(this.file, JSON.stringify(products, null, 2));
     }
     
     getProducts = async (limit) => {
@@ -56,7 +56,7 @@ class ProductManager {
         }
         const newProduct =
         {
-            id: this.incrementableId(),
+            id: await this.incrementableId(),
             title: title,
             description: description,
             code: code,
