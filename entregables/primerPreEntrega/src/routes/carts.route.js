@@ -1,8 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const fs = require('fs')
+const CartManager = require('../cartManager.js')
+const filePath = './entregables/carts.json'
+const cartManager = new CartManager(filePath)
 
-const filePath = 'carts.json'
+
 
 const readCartsFromFile = () => {
     try {

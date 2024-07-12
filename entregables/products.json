@@ -1,0 +1,32 @@
+[
+  {
+    "id": 2,
+    "title": "Churro ",
+    "description": "Pan frances saludable, perfecto para un desayuno nutritivo.",
+    "code": "PI506",
+    "price": 5,
+    "status": true,
+    "stock": 25,
+    "category": "Pan"
+  },
+  {
+    "id": 5,
+    "title": "Churro ",
+    "description": "Pan frances saludable, perfecto para un desayuno nutritivo.",
+    "code": "PI506",
+    "price": 5,
+    "status": true,
+    "stock": 25,
+    "category": "Pan"
+  },
+  {
+    "id": 6,
+    "title": "Churro ",
+    "description": "Pan frances saludable, perfecto para un desayuno nutritivo.",
+    "code": "PI506",
+    "price": 5,
+    "status": true,
+    "stock": 25,
+    "category": "Pan"
+  }
+]
