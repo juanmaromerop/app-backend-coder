@@ -5,19 +5,19 @@ class ProductManager {
         this.file = file;
     }
 
-   readProductsFromFile = async  () => {
+    readProductsFromFile = async () => {
         try {
-            const data =  await fs.readFile(this.file, "utf-8");
+            const data = await fs.readFile(this.file, "utf-8");
             return JSON.parse(data);
         } catch (error) {
             return []
         }
     }
-    
+
     writeProductsFromFile = async (products) => {
         await fs.writeFile(this.file, JSON.stringify(products, null, 2));
     }
-    
+
     getProducts = async (limit) => {
         const products = await this.readProductsFromFile();
         if (!isNaN(limit) && limit > 0) {
@@ -66,10 +66,9 @@ class ProductManager {
             category: category
         }
         products.push(newProduct)
-      await  this.writeProductsFromFile(products)
+        await this.writeProductsFromFile(products)
         return { message: "Producto agregado correctamente" }
     }
-
 
     updateProductById = async (title, description, code, price, status, stock, category, pid) => {
         const products = await this.readProductsFromFile();
@@ -91,19 +90,20 @@ class ProductManager {
             return { message: 'Producto actualizado correctamente', product };
         }
 
-};
+    };
 
-deleteProductById = async (pid) => {
-    const products = await this.readProductsFromFile()
-    const product = await this.getProductById(pid)
-    if (!product) {
-        return { message: "Error, no se pudo eliminar el producto porque no existe" }
-    } else {
-        const productsWithoutProductId = products.filter((product) => product.id !== parseInt(pid))
-         await this.writeProductsFromFile(productsWithoutProductId)
-        return productsWithoutProductId
+    deleteProductById = async (pid) => {
+        const products = await this.readProductsFromFile()
+        const product = await this.getProductById(pid)
+        
+        if (!product) {
+            return { message: "Error, no se pudo eliminar el producto porque no existe" }
+        } else {
+            const productsWithoutProductId = products.filter((product) => product.id !== parseInt(pid))
+            await this.writeProductsFromFile(productsWithoutProductId)
+            return productsWithoutProductId
+        }
     }
-}
 
 }
 

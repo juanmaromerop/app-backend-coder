@@ -13,6 +13,7 @@ router.post("/api/cart", async (req, res) => {
 router.get("/api/cart/:cid", async (req, res) => {
     const cartID = parseInt(req.params.cid)
     const response = await cartManager.getCartById(cartID);
+
     if (response.error) {
         res.status(404).json(response)
     } else {
@@ -26,7 +27,6 @@ router.post("/api/cart/:cid/product/:pid", async (req, res) => {
         const productId = parseInt(req.params.pid)
         const findProduct = await productManager.getProductById(productId)
         const findCart = await cartManager.getCartById(cartId)
-        console.log(findProduct);
 
         if (findProduct.message || findCart.error) {
             res.status(404).json({ message: `Error, el id del producto o del carrito no son existentes` })

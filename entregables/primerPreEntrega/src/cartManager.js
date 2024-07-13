@@ -41,31 +41,32 @@ class CartManager {
         const carts = await this.readCartsFromFile()
         const cart = carts.find((cart) => cart.id === cid)
         if (!cart) {
-            return {error: `Error, no se encontro el carrito con el id ${cid}`}
+            return { error: `Error, no se encontro el carrito con el id ${cid}` }
         }
         return cart
     }
-    createProductInCart = async (cartID, product) =>{
-       try {
-        let quantity = 1
-        const data =  await this.readCartsFromFile()
-        const indexData = data.findIndex((cart) => cart.id === cartID)
-        const dataProducts = data[indexData].products
-        const findProduct = dataProducts.find((existProd) => existProd.id === product.id )
-        if (findProduct) {
-            findProduct.quantity += 1
-            this.writeCartsFromFile(data)
-        } else {
-            dataProducts.push({id: product.id, quantity: quantity})
-            this.writeCartsFromFile(data)
+    
+    createProductInCart = async (cartID, product) => {
+        try {
+            let quantity = 1
+            const data = await this.readCartsFromFile()
+            const indexData = data.findIndex((cart) => cart.id === cartID)
+            const dataProducts = data[indexData].products
+            const findProduct = dataProducts.find((existProd) => existProd.id === product.id)
+            if (findProduct) {
+                findProduct.quantity += 1
+                this.writeCartsFromFile(data)
+            } else {
+                dataProducts.push({ id: product.id, quantity: quantity })
+                this.writeCartsFromFile(data)
+            }
+        } catch (error) {
+            return { error: error.message }
         }
-       } catch (error) {
-        return { error: error.message }
-       }
 
     }
 
-    
+
 }
 
 
