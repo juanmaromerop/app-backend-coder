@@ -1,5 +1,3 @@
-const { error } = require('console');
-
 const fs = require('fs').promises;
 
 class CartManager {
@@ -47,6 +45,27 @@ class CartManager {
         }
         return cart
     }
+    createProductInCart = async (cartID, product) =>{
+       try {
+        let quantity = 1
+        const data =  await this.readCartsFromFile()
+        const indexData = data.findIndex((cart) => cart.id === cartID)
+        const dataProducts = data[indexData].products
+        const findProduct = dataProducts.find((existProd) => existProd.id === product.id )
+        if (findProduct) {
+            findProduct.quantity += 1
+            this.writeCartsFromFile(data)
+        } else {
+            dataProducts.push({id: product.id, quantity: quantity})
+            this.writeCartsFromFile(data)
+        }
+       } catch (error) {
+        return { error: error.message }
+       }
+
+    }
+
+    
 }
 
 
