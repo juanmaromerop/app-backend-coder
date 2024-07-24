@@ -1,49 +1,39 @@
 [
   {
-    "id": 2,
-    "title": "Churro ",
-    "description": "Pan frances saludable, perfecto para un desayuno nutritivo.",
-    "code": "PI506",
-    "price": 5,
+    "id": 3,
+    "title": "Croissant",
+    "description": "Croissant recién horneado, ideal para acompañar tu café.",
+    "code": "PI507",
+    "price": 4,
     "status": true,
-    "stock": 25,
+    "stock": 30,
+    "category": "Pan"
+  },
+  {
+    "id": 4,
+    "title": "Donut",
+    "description": "Donut glaseado con un toque de vainilla, delicioso y suave.",
+    "code": "PI508",
+    "price": 3,
+    "status": true,
+    "stock": 40,
     "category": "Pan"
   },
   {
     "id": 5,
-    "title": "Churro ",
-    "description": "Pan frances saludable, perfecto para un desayuno nutritivo.",
-    "code": "PI506",
-    "price": 5,
+    "title": "Pan Integral",
+    "description": "Pan integral saludable, rico en fibra y perfecto para una dieta balanceada.",
+    "code": "PI509",
+    "price": 6,
     "status": true,
-    "stock": 25,
+    "stock": 20,
     "category": "Pan"
   },
   {
     "id": 6,
-    "title": "Churro ",
-    "description": "Pan frances saludable, perfecto para un desayuno nutritivo.",
-    "code": "PI506",
-    "price": 5,
-    "status": true,
-    "stock": 25,
-    "category": "Pan"
-  },
-  {
-    "id": {},
-    "title": "Churro ",
-    "description": "Pan frances saludable, perfecto para un desayuno nutritivo.",
-    "code": "PI506",
-    "price": 5,
-    "status": true,
-    "stock": 25,
-    "category": "Pan"
-  },
-  {
-    "id": {},
-    "title": "Churro ",
-    "description": "Pan frances saludable, perfecto para un desayuno nutritivo.",
-    "code": "PI506",
+    "title": "Bagel",
+    "description": "Bagel crujiente y delicioso, ideal para un desayuno o merienda.",
+    "code": "PI510",
     "price": 5,
     "status": true,
     "stock": 25,
@@ -51,22 +41,22 @@
   },
   {
     "id": 7,
-    "title": "Churro ",
-    "description": "Pan frances saludable, perfecto para un desayuno nutritivo.",
-    "code": "PI506",
-    "price": 5,
+    "title": "Muffin",
+    "description": "Muffin de arándanos, esponjoso y perfecto para cualquier ocasión.",
+    "code": "PI511",
+    "price": 4,
     "status": true,
-    "stock": 25,
+    "stock": 35,
     "category": "Pan"
   },
   {
     "id": 8,
-    "title": "Churro ",
-    "description": "Pan frances saludable, perfecto para un desayuno nutritivo.",
+    "title": "Alfajor de durazno ",
+    "description": "Alfajor saludable, perfecto para un desayuno nutritivo.",
     "code": "PI506",
     "price": 5,
     "status": true,
     "stock": 25,
-    "category": "Pan"
+    "category": "Dulce"
   }
 ]
