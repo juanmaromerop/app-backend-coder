@@ -31,32 +31,12 @@
   },
   {
     "id": 6,
-    "title": "Bagel",
-    "description": "Bagel crujiente y delicioso, ideal para un desayuno o merienda.",
-    "code": "PI510",
-    "price": 5,
+    "title": "Pastel",
+    "description": "Carne",
+    "code": "ASD54",
+    "price": "1000",
     "status": true,
-    "stock": 25,
-    "category": "Pan"
-  },
-  {
-    "id": 7,
-    "title": "Muffin",
-    "description": "Muffin de arándanos, esponjoso y perfecto para cualquier ocasión.",
-    "code": "PI511",
-    "price": 4,
-    "status": true,
-    "stock": 35,
-    "category": "Pan"
-  },
-  {
-    "id": 8,
-    "title": "Alfajor de durazno ",
-    "description": "Alfajor saludable, perfecto para un desayuno nutritivo.",
-    "code": "PI506",
-    "price": 5,
-    "status": true,
-    "stock": 25,
-    "category": "Dulce"
+    "stock": "25",
+    "category": "Pastel "
   }
 ]

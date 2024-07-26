@@ -28,14 +28,23 @@ app.use("/", viewsRouter)
 const httpServer = app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
 const socketServer = new Server(httpServer)
 
+// let products = [];
+// (async () =>{
+//      products = await productManager.getProducts()
+// })();
+
 socketServer.on('connection', async (socketServer) => {
     console.log("Nuevo cliente conectado");
-
     const products = await productManager.getProducts()
     socketServer.emit('products', products)
 
-    socketServer.on('product', newProduct =>{
-        products.push(newProduct)
-    })
+    socketServer.on('createProduct', async (newProduct) => {
+        await productManager.createProduct(newProduct.title, newProduct.description, newProduct.code, newProduct.price, newProduct.status, newProduct.stock, newProduct.category);
+        const updatedProducts = await productManager.getProducts();
+        socketServer.emit('products', updatedProducts);
+    });
 
 })
+
+app.set('socketServer', socketServer);
+
