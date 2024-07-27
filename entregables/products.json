@@ -18,5 +18,15 @@
     "status": true,
     "stock": "20",
     "category": "Empanadas"
+  },
+  {
+    "id": 3,
+    "title": "Calabaza",
+    "description": "Queso",
+    "code": "asdfe",
+    "price": "780",
+    "status": true,
+    "stock": "5",
+    "category": "Verduras"
   }
 ]

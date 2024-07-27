@@ -11,7 +11,7 @@ socket.on('products', data => {
         listItem.textContent = `
         Producto: ${product.title} -
          Descripción: ${product.description} -
-         Code: ${product.code} -
+         Code: ${product.code.toUpperCase()} -
           Precio: ${product.price} -
           Status: ${product.status} -
           Stock: ${product.stock} -
@@ -72,7 +72,7 @@ const addProduct = async () => {
         });
 
         creatForm.reset();
-        
+
     } else {
         Swal.fire({
             title: "Bienvenido!",
