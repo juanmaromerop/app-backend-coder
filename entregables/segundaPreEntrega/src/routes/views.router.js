@@ -26,9 +26,15 @@ router.post('/realtimeproducts', async (req, res) => {
     res.status(201).send();
 });
 
-router.delete('/realtimeproducts/:id', (req, res) =>{
-    
-})
+router.delete('/realtimeproducts/:id', async (req, res) => {
+    const productId = req.params.id;
+    await productManager.deleteProductById(productId);
 
+    const socketServer = req.app.get('socketServer');
+    const updatedProducts = await productManager.getProducts();
+    socketServer.emit('products', updatedProducts);
+
+    res.status(200).send();
+});
 
 export default router

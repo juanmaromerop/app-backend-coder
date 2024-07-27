@@ -1,6 +1,6 @@
 [
   {
-    "id": 3,
+    "id": 1,
     "title": "Croissant",
     "description": "Croissant recién horneado, ideal para acompañar tu café.",
     "code": "PI507",
@@ -10,33 +10,13 @@
     "category": "Pan"
   },
   {
-    "id": 4,
-    "title": "Donut",
-    "description": "Donut glaseado con un toque de vainilla, delicioso y suave.",
-    "code": "PI508",
-    "price": 3,
-    "status": true,
-    "stock": 40,
-    "category": "Pan"
-  },
-  {
-    "id": 5,
-    "title": "Pan Integral",
-    "description": "Pan integral saludable, rico en fibra y perfecto para una dieta balanceada.",
-    "code": "PI509",
-    "price": 6,
-    "status": true,
-    "stock": 20,
-    "category": "Pan"
-  },
-  {
-    "id": 6,
-    "title": "Pastel",
+    "id": 2,
+    "title": "Empanada",
     "description": "Carne",
-    "code": "ASD54",
-    "price": "1000",
+    "code": "dasd5",
+    "price": "500",
     "status": true,
-    "stock": "25",
-    "category": "Pastel "
+    "stock": "20",
+    "category": "Empanadas"
   }
 ]

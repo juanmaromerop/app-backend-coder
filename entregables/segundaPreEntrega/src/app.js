@@ -28,11 +28,6 @@ app.use("/", viewsRouter)
 const httpServer = app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
 const socketServer = new Server(httpServer)
 
-// let products = [];
-// (async () =>{
-//      products = await productManager.getProducts()
-// })();
-
 socketServer.on('connection', async (socketServer) => {
     console.log("Nuevo cliente conectado");
     const products = await productManager.getProducts()
@@ -45,6 +40,5 @@ socketServer.on('connection', async (socketServer) => {
     });
 
 })
-
 app.set('socketServer', socketServer);
 
