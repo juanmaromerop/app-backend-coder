@@ -21,12 +21,64 @@
   },
   {
     "id": 3,
-    "title": "Calabaza",
+    "title": "Super Milanesa ",
     "description": "Queso",
-    "code": "asdfe",
-    "price": "780",
+    "code": "kbkjhnk5616",
+    "price": "1520",
     "status": true,
-    "stock": "5",
-    "category": "Verduras"
+    "stock": "20",
+    "category": "Verdura"
   }
 ]
+
+
+
+[,
+//   // Categoría: Panes
+//   { name: "Pan Baguette", description: "Pan francés crujiente", price: 1.50, quantity: 25, category: "Panes" },
+//   { name: "Pan Integral", description: "Pan hecho con harina integral", price: 2.00, quantity: 30, category: "Panes" },
+//   { name: "Pan de Molde", description: "Pan cuadrado perfecto para sándwiches", price: 1.75, quantity: 40, category: "Panes" },
+//   { name: "Pan de Ajo", description: "Pan con sabor a ajo ideal para acompañamientos", price: 2.25, quantity: 20, category: "Panes" },
+//   { name: "Pan de Centeno", description: "Pan oscuro hecho con harina de centeno", price: 2.50, quantity: 15, category: "Panes" },
+//   { name: "Pan Brioche", description: "Pan dulce y esponjoso", price: 3.00, quantity: 18, category: "Panes" },
+//   { name: "Pan Rústico", description: "Pan artesanal de corteza gruesa", price: 2.75, quantity: 22, category: "Panes" },
+//   { name: "Pan Ciabatta", description: "Pan italiano de textura aireada", price: 2.00, quantity: 27, category: "Panes" },
+//   { name: "Pan Focaccia", description: "Pan plano con aceite de oliva y hierbas", price: 3.25, quantity: 19, category: "Panes" },
+//   { name: "Pan de Salvado", description: "Pan alto en fibra hecho con salvado", price: 2.20, quantity: 23, category: "Panes" },
+
+//   // Categoría: Bollería
+//   { name: "Croissant", description: "Hojaldre en forma de media luna, ligero y esponjoso", price: 2.00, quantity: 35, category: "Bollería" },
+//   { name: "Donut Glaseado", description: "Rosquilla cubierta con glaseado de azúcar", price: 1.50, quantity: 50, category: "Bollería" },
+//   { name: "Brioche", description: "Bolillo dulce y esponjoso", price: 2.75, quantity: 25, category: "Bollería" },
+//   { name: "Danish", description: "Pastel de hojaldre relleno de crema o frutas", price: 3.00, quantity: 20, category: "Bollería" },
+//   { name: "Concha", description: "Pan dulce mexicano con cobertura de azúcar", price: 1.25, quantity: 40, category: "Bollería" },
+//   { name: "Pan de Chocolate", description: "Hojaldre relleno de chocolate", price: 2.50, quantity: 30, category: "Bollería" },
+//   { name: "Cinnamon Roll", description: "Rollo de canela glaseado", price: 3.50, quantity: 18, category: "Bollería" },
+//   { name: "Berlina", description: "Rosquilla rellena de crema o mermelada", price: 2.25, quantity: 28, category: "Bollería" },
+//   { name: "Palmera", description: "Hojaldre crujiente en forma de corazón", price: 1.75, quantity: 32, category: "Bollería" },
+//   { name: "Empanada de Dulce", description: "Empanada rellena de dulce de frutas", price: 2.00, quantity: 22, category: "Bollería" },
+
+//   // Categoría: Pasteles
+//   { name: "Pastel de Chocolate", description: "Pastel rico y húmedo de chocolate", price: 15.00, quantity: 10, category: "Pasteles" },
+//   { name: "Pastel de Zanahoria", description: "Pastel de zanahoria con crema de queso", price: 13.00, quantity: 12, category: "Pasteles" },
+//   { name: "Cheesecake", description: "Pastel de queso cremoso con base de galleta", price: 18.00, quantity: 8, category: "Pasteles" },
+//   { name: "Pastel de Tres Leches", description: "Pastel esponjoso bañado en tres tipos de leche", price: 16.00, quantity: 9, category: "Pasteles" },
+//   { name: "Pastel Red Velvet", description: "Pastel rojo aterciopelado con crema de queso", price: 17.00, quantity: 11, category: "Pasteles" },
+//   { name: "Pastel de Limón", description: "Pastel ligero y ácido con sabor a limón", price: 14.00, quantity: 13, category: "Pasteles" },
+//   { name: "Pastel de Fresas", description: "Pastel esponjoso cubierto de fresas frescas", price: 16.50, quantity: 7, category: "Pasteles" },
+//   { name: "Tarta de Manzana", description: "Tarta crujiente rellena de manzanas", price: 15.50, quantity: 8, category: "Pasteles" },
+//   { name: "Pastel de Coco", description: "Pastel tropical con sabor a coco", price: 14.50, quantity: 10, category: "Pasteles" },
+//   { name: "Tarta de Queso y Frutas", description: "Tarta de queso con cobertura de frutas frescas", price: 18.50, quantity: 6, category: "Pasteles" },
+
+//   // Categoría: Galletas
+//   { name: "Galletas de Chocolate", description: "Galletas crujientes con trozos de chocolate", price: 5.00, quantity: 40, category: "Galletas" },
+//   { name: "Galletas de Avena", description: "Galletas saludables con avena y pasas", price: 4.50, quantity: 35, category: "Galletas" },
+//   { name: "Galletas de Mantequilla", description: "Galletas suaves y mantecosas", price: 6.00, quantity: 30, category: "Galletas" },
+//   { name: "Galletas de Almendra", description: "Galletas crujientes con trozos de almendra", price: 5.50, quantity: 25, category: "Galletas" },
+//   { name: "Galletas de Limón", description: "Galletas con un toque de limón", price: 4.75, quantity: 28, category: "Galletas" },
+//   { name: "Galletas de Jengibre", description: "Galletas especiadas con jengibre", price: 4.25, quantity: 32, category: "Galletas" },
+//   { name: "Galletas de Coco", description: "Galletas crujientes con sabor a coco", price: 5.00, quantity: 27, category: "Galletas" },
+//   { name: "Galletas de Vainilla", description: "Galletas suaves con sabor a vainilla", price: 4.50, quantity: 29, category: "Galletas" },
+//   { name: "Galletas Rellenas de Mermelada", description: "Galletas con centro de mermelada de frutas", price: 6.25, quantity: 20, category: "Galletas" },
+//   { name: "Galletas de Chispas de Chocolate", description: "Galletas suaves con chispas de chocolate", price: 5.75, quantity: 33, category: "Galletas" },
+// ]

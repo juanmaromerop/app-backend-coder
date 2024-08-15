@@ -1,0 +1,66 @@
+<div>
+    <form id="createForm" action="" method="post">
+        <input type="text" id="productId" placeholder="Producto">
+        <input type="text" id="descriptionId" placeholder="Descripcion del producto">
+        <input type="number" id="priceId" placeholder="Precio del produto">
+        <input type="number" id="stockId" placeholder="Stock">
+        <input type="text" id="categoryId" placeholder="Categoria">
+
+        <button id="sendButton" type="submit">Enviar Producto</button>
+    </form>
+</div>
+
+<h1>Lista de Productos </h1>
+<div>
+    <button id="cartButton"><i class="fa-solid fa-cart-shopping"></i> <span id="cartCount">0</span></button>
+</div>
+
+
+<!-- Botones de categorías -->
+<div>
+    {{#each categories}}
+    <button data-category="{{this}}">{{this}}</button>
+    {{/each}}
+</div>
+
+<!-- Botones de ordenamiento -->
+<div>
+    <button data-sort="asc">Ordenar Menor a Mayor precio</button>
+    <button data-sort="desc">Ordenar Mayor a Menor precio</button>
+    <button data-sort="default">Orden Original</button>
+</div>
+
+<!-- Mostrar los productos si existen -->
+{{#if products.length}}
+<ul>
+    {{#each products}}
+    <li>
+        <h2>{{this.name}}</h2>
+        <p>{{this.description}}</p>
+        <p>Precio: {{this.price}}$</p>
+        <p>Stock: {{this.quantity}}</p>
+        <p>Categoría: {{this.category}}</p>
+        <button data-action="add-to-cart" data-product-id="{{_id}}">Agregar al carrito</button>
+
+    </li>
+    {{/each}}
+</ul>
+{{else}}
+<p>No hay productos disponibles.</p>
+{{/if}}
+
+<div>
+    {{#if hasPrevPage}}
+    <a href="?page={{prevPage}}&limit={{limit}}&category={{selectedCategory}}&sort={{selectedSort}}">Página Anterior</a>
+    {{/if}}
+
+    <p>Página {{pagingCounter}} de {{totalPages}}</p>
+
+    {{#if hasNextPage}}
+    <a href="?page={{nextPage}}&limit={{limit}}&category={{selectedCategory}}&sort={{selectedSort}}">Siguiente
+        Página</a>
+    {{/if}}
+</div>
+
+
+<script type="module" src="/js/index.js"></script>
