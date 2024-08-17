@@ -40,6 +40,30 @@ import productsModel from "../models/products.model.js"
 
 
 //PROYECTO FINAL
+router.post("/api/products", async (req, res) => {
+    const { name, description, price, quantity, category } = req.body;
+    const validCategories = ['bolleria', 'galletas', 'panes', 'pasteles'];
+
+    if (!validCategories.includes(category)) {
+        return res.status(400).json({ error: 'Categoría no válida' });
+    }
+
+    try {
+        const newProduct = new productsModel({
+            name,
+            description,
+            price,
+            quantity,
+            category
+        });
+
+        await newProduct.save();
+        res.status(201).json({ message: 'Producto creado exitosamente' });
+    } catch (error) {
+        console.error('Error al crear el producto:', error);
+        res.status(500).json({ error: 'Error al crear el producto' });
+    }
+});
 
 router.get("/api/products", async (req, res) => {
     try {

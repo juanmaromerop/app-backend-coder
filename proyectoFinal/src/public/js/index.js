@@ -1,4 +1,50 @@
+
 document.addEventListener('DOMContentLoaded', () => {
+    const createForm = document.getElementById('createForm');
+    const validCategories = ['bolleria', 'galletas', 'panes', 'pasteles'];
+
+    createForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const productId = document.getElementById('productId').value.trim();
+        const description = document.getElementById('descriptionId').value.trim();
+        const price = parseFloat(document.getElementById('priceId').value);
+        const stock = parseInt(document.getElementById('stockId').value);
+        const category = document.getElementById('categoryId').value.trim().toLowerCase();
+
+        if (!validCategories.includes(category)) {
+            alert('La categoría no es válida. Por favor, elija entre bolleria, galletas, panes o pasteles.');
+            return;
+        }
+
+        const newProduct = {
+            name: productId,
+            description: description,
+            price: price,
+            quantity: stock,
+            category: category
+        };
+
+        try {
+            const response = await fetch('/api/products', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newProduct)
+            });
+
+            if (response.ok) {
+                alert('Producto creado exitosamente');
+                createForm.reset();
+            } else {
+                alert('Error al crear el producto');
+            }
+        } catch (error) {
+            console.error('Error al crear el producto:', error);
+        }
+    });
+
     const categoryButtons = document.querySelectorAll('button[data-category]');
     const sortButtons = document.querySelectorAll('button[data-sort]');
     const addToCartButtons = document.querySelectorAll('button[data-action="add-to-cart"]');
@@ -38,8 +84,14 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault(); // Prevenir la redirección
 
             const productId = event.target.getAttribute('data-product-id');
-            const cartId = 'default'; // Ajusta esto según cómo obtienes el ID del carrito
-
+            const cartId = await fetch(`/api/carts`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+          
+            
             try {
                 const response = await fetch(`/api/carts/${cartId}/products/${productId}`, {
                     method: 'POST',
@@ -64,25 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-    const cartButton = document.getElementById('cartButton');
-
-    // Verificar que el botón existe en el DOM
-    if (cartButton) {
-        cartButton.addEventListener('click', () => {
-            const userId = localStorage.getItem('userId'); // Obtener el userId desde localStorage
-
-            if (userId) {
-                // Redirigir a la página del carrito para este userId
-                window.location.href = `/api/carts/${userId}`;
-            } else {
-                // Mostrar un mensaje si no se encuentra el userId
-                alert('Debes iniciar sesión para ver tu carrito.');
-            }
-        });
-    }
-
-
 
     // const removeFromCartButtons = document.querySelectorAll('button[data-action="remove-from-cart"]');
     //     const clearCartButton = document.getElementById('clear-cart');
