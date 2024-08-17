@@ -4,7 +4,6 @@ import productsRouter from './routes/products.route.js'
 import cartsRouter from './routes/carts.route.js'
 import handlebars from 'express-handlebars'
 import __dirname from './utils.js'
-import viewsRouter from './routes/views.router.js'
 import { Server } from 'socket.io'
 import ProductManager from './productManager.js'
 import mongoose from 'mongoose'
@@ -37,7 +36,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use("/", productsRouter)
 app.use("/", cartsRouter)
-app.use("/", viewsRouter)
 
 const httpServer = app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
 const socketServer = new Server(httpServer)

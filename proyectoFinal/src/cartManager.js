@@ -29,19 +29,29 @@ class CartManager {
         return existingCart;
     };
     
-   getCart =  async () => {
+   getCartId = async () => {
         try {
-            const lastCart = await this.cartCollection
-                .findOne({}, { _id: 1 }) // Selecciona solo el campo _id
+            const lastCart = await cartsModel
+                .findOne() // Selecciona solo el campo _id
                 .sort({ _id: -1 }) // Ordena por _id de manera descendente para obtener el último creado
-                .lean();
-            return lastCart ? lastCart._id : null; // Devuelve el _id o null si no hay resultados
+                .lean(); 
+            return lastCart ? lastCart._id.toString() : null; // Devuelve el _id o null si no hay resultados
         }
         catch (err) {
             return { error: err.message };
         }
     }
-
+    getCarts =  async () => {
+        try {
+            const carts = await cartsModel
+            .find()
+            .lean();
+            return carts
+        }
+        catch (err) {
+            return { error: err.message };
+        }
+    }
 }
 
 

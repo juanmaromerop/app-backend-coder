@@ -2,7 +2,29 @@
 document.addEventListener('DOMContentLoaded', () => {
     const createForm = document.getElementById('createForm');
     const validCategories = ['bolleria', 'galletas', 'panes', 'pasteles'];
+    const cartButton = document.getElementById('cartButton');
+    cartButton.addEventListener('click', async () => {
+        try {
+            console.log("HOLA")
+            // Primero, obtén el cartId actual
+            const cartResponse = await fetch(`/api/cart`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
 
+            const cartId = await cartResponse.json();
+            // Redirige a la vista renderizada del carrito
+            if (typeof cartId === 'string') {
+                window.location.href = `/api/cart/${cartId}`;
+            } else {
+                console.error('No se pudo obtener el ID del carrito');
+            }
+        } catch (error) {
+            console.error('Error al hacer clic en el carrito:', error);
+        }
+    });
     createForm.addEventListener('submit', async (event) => {
         event.preventDefault();
 
@@ -24,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
             quantity: stock,
             category: category
         };
-
         try {
             const response = await fetch('/api/products', {
                 method: 'POST',
@@ -84,14 +105,14 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault(); // Prevenir la redirección
 
             const productId = event.target.getAttribute('data-product-id');
-            const cartId = await fetch(`/api/carts`, {
+            const cartResponse = await fetch(`/api/cart`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-            });
-          
-            
+            }); 
+            const cartId = await cartResponse.json();
+            console.log("CartIdFE", cartId);
             try {
                 const response = await fetch(`/api/carts/${cartId}/products/${productId}`, {
                     method: 'POST',
