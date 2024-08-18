@@ -76,38 +76,28 @@ router.get('/api/cart/:cartId', async (req, res) => {
         res.status(500).send('Error al obtener el carrito');
     }
 });
-// // Endpoint para eliminar un producto del carrito
-// router.delete('/api/carts/:userId/products/:productId', async (req, res) => {
-//     const { userId, productId } = req.params;
 
-//     try {
-//         let cart = await cartsModel.findOne({ userId });
-//         cart.products = cart.products.filter(p => p.productId.toString() !== productId);
-//         await cart.save();
+router.delete('/api/carts/:cartId/products/:productId', async (req, res) => {
+    const { cartId, productId } = req.params;
+    try {
+        let cart = await cartsModel.findById(cartId);
+        if (!cart) {
+            return res.status(404).send('Carrito no encontrado');
+        }
 
-//         res.status(200).send('Producto eliminado del carrito');
-//     } catch (error) {
-//         console.error('Error al eliminar el producto del carrito:', error);
-//         res.status(500).send('Error al eliminar el producto del carrito');
-//     }
-// });
-
-// // Endpoint para vaciar el carrito
-// router.delete('/api/carts/:userId', async (req, res) => {
-//     const { userId } = req.params;
-
-//     try {
-//         let cart = await cartsModel.findOne({ userId });
-//         cart.products = [];
-//         await cart.save();
-
-//         res.status(200).send('Carrito vaciado');
-//     } catch (error) {
-//         console.error('Error al vaciar el carrito:', error);
-//         res.status(500).send('Error al vaciar el carrito');
-//     }
-// });
-
+        const productIndex = cart.products.findIndex(prod => prod.product.toString() === productId);
+        if (productIndex > -1) {
+            cart.products.splice(productIndex, 1); // Eliminar el producto del carrito
+            await cart.save();
+            return res.status(200).send('Producto eliminado del carrito');
+        } else {
+            return res.status(404).send('Producto no encontrado en el carrito');
+        }
+    } catch (error) {
+        console.error('Error al eliminar el producto del carrito:', error);
+        res.status(500).send('Error al eliminar el producto del carrito');
+    }
+});
 
 
 export default router;

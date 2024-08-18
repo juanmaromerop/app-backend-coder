@@ -21,7 +21,6 @@ app.use(json())
 app.use(urlencoded({ extended: true }))
 
 const hbs = exphbs.create({
-    // Definir helpers personalizados aquí
     helpers: {
         ifEquals: function (arg1, arg2, options) {
             return (arg1 == arg2) ? options.fn(this) : options.inverse(this);

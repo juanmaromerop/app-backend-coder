@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-            }); 
+            });
             const cartId = await cartResponse.json();
             console.log("CartIdFE", cartId);
             try {
@@ -138,48 +138,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // const removeFromCartButtons = document.querySelectorAll('button[data-action="remove-from-cart"]');
-    //     const clearCartButton = document.getElementById('clear-cart');
+    const removeFromCartButtons = document.querySelectorAll('button[data-action="remove-from-cart"]');
+    
+    removeFromCartButtons.forEach(button => {
+        button.addEventListener('click', async (event) => {
+            event.preventDefault();
 
-    // // Eliminar un producto del carrito
-    // removeFromCartButtons.forEach(button => {
-    //     button.addEventListener('click', async (event) => {
-    //         const productId = event.target.getAttribute('data-product-id');
-    //         const userId = '{{userId}}'; // Cambia esto según la forma en que obtienes el userId
+            const productId = event.target.getAttribute('data-product-id');
+            const cartResponse = await fetch(`/api/cart`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const cartId = await cartResponse.json();
 
-    //         try {
-    //             const response = await fetch(`/api/carts/${userId}/products/${productId}`, {
-    //                 method: 'DELETE'
-    //             });
+            try {
+                const response = await fetch(`/api/carts/${cartId}/products/${productId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
 
-    //             if (response.ok) {
-    //                 location.reload(); // Recargar la página para reflejar los cambios
-    //             } else {
-    //                 alert('Error al eliminar el producto del carrito');
-    //             }
-    //         } catch (error) {
-    //             console.error('Error al eliminar del carrito:', error);
-    //         }
-    //     });
-    // });
-
-    // // Vaciar el carrito
-    // clearCartButton.addEventListener('click', async () => {
-    //     const userId = '{{userId}}'; // Cambia esto según la forma en que obtienes el userId
-
-    //     try {
-    //         const response = await fetch(`/api/carts/${userId}`, {
-    //             method: 'DELETE'
-    //         });
-
-    //         if (response.ok) {
-    //             location.reload(); // Recargar la página para reflejar los cambios
-    //         } else {
-    //             alert('Error al vaciar el carrito');
-    //         }
-    //     } catch (error) {
-    //         console.error('Error al vaciar el carrito:', error);
-    //     }
-    // });
+                if (response.ok) {
+                    alert('Producto eliminado del carrito');
+                    // Aquí puedes actualizar la vista del carrito o eliminar el producto del DOM
+                    event.target.closest('li').remove();
+                } else {
+                    alert('Error al eliminar el producto del carrito');
+                }
+            } catch (error) {
+                console.error('Error al eliminar del carrito:', error);
+            }
+        });
+    });
 
 });
