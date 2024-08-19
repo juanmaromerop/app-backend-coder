@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const createForm = document.getElementById('createForm');
     const validCategories = ['bolleria', 'galletas', 'panes', 'pasteles'];
     const cartButton = document.getElementById('cartButton');
+ 
     cartButton.addEventListener('click', async () => {
         try {
-            console.log("HOLA")
             // Primero, obtén el cartId actual
             const cartResponse = await fetch(`/api/cart`, {
                 method: 'GET',
@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error al hacer clic en el carrito:', error);
         }
     });
+
     createForm.addEventListener('submit', async (event) => {
         event.preventDefault();
 
@@ -110,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-            });
+            }); 
             const cartId = await cartResponse.json();
             console.log("CartIdFE", cartId);
             try {
@@ -137,41 +138,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-    const removeFromCartButtons = document.querySelectorAll('button[data-action="remove-from-cart"]');
-    
-    removeFromCartButtons.forEach(button => {
-        button.addEventListener('click', async (event) => {
-            event.preventDefault();
-
-            const productId = event.target.getAttribute('data-product-id');
-            const cartResponse = await fetch(`/api/cart`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            const cartId = await cartResponse.json();
-
-            try {
-                const response = await fetch(`/api/carts/${cartId}/products/${productId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-
-                if (response.ok) {
-                    alert('Producto eliminado del carrito');
-                    // Aquí puedes actualizar la vista del carrito o eliminar el producto del DOM
-                    event.target.closest('li').remove();
-                } else {
-                    alert('Error al eliminar el producto del carrito');
-                }
-            } catch (error) {
-                console.error('Error al eliminar del carrito:', error);
-            }
-        });
-    });
-
 });

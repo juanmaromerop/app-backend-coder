@@ -99,5 +99,22 @@ router.delete('/api/carts/:cartId/products/:productId', async (req, res) => {
     }
 });
 
+router.delete('/api/carts/:cartId', async (req, res) => {
+    const { cartId } = req.params;
+    try {
+        let cart = await cartsModel.findById(cartId);
+        if (!cart) {
+            return res.status(404).send('Carrito no encontrado');
+        }
+
+        cart.products = []; // Eliminar todos los productos del carrito
+        await cart.save();
+        res.status(200).send('Carrito vaciado');
+    } catch (error) {
+        console.error('Error al vaciar el carrito:', error);
+        res.status(500).send('Error al vaciar el carrito');
+    }
+});
+
 
 export default router;
